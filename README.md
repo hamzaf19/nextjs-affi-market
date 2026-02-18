@@ -4,13 +4,13 @@ A modern starter template using Next.js 16 with the App Router and shadcn/ui com
 
 ## Tech Stack
 
-- **Next.js 16** - React framework with App Router
-- **React 19** - Latest React with new features
+- **Next.js 16.1** - React framework with App Router
+- **React 19.2** - Latest React with new features
 - **TypeScript 5.9** - Type-safe development
-- **Tailwind CSS 4** - Utility-first CSS framework
+- **Tailwind CSS 4.1** - Utility-first CSS framework
 - **shadcn/ui** - Re-usable UI components (New York style)
 - **Radix UI** - Accessible component primitives
-- **Lucide React** - Icon library
+- **Lucide React 0.574** - Icon library
 
 ## Getting Started
 
