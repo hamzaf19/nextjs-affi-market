@@ -1,111 +1,140 @@
-import Image from 'next/image'
+import Link from "next/link";
+import { ArrowRight, Dumbbell, Brain, Zap } from "lucide-react";
+import { getFeaturedProducts, getAllCategories } from "@/lib/products";
+import { ProductCard } from "@/components/shop/ProductCard";
+
+const categoryIcons: Record<string, React.ReactNode> = {
+  Fitness: <Dumbbell className="h-6 w-6" />,
+  Mindset: <Brain className="h-6 w-6" />,
+  Productivity: <Zap className="h-6 w-6" />,
+};
+
+const categoryDescriptions: Record<string, string> = {
+  Fitness:
+    "Supplements, equipment, and gear to build your strongest body.",
+  Mindset:
+    "Books and resources that sharpen your mental edge.",
+  Productivity:
+    "Tools and systems to maximise every hour of your day.",
+};
 
 export default function Home() {
+  const featured = getFeaturedProducts();
+  const categories = getAllCategories();
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-linear-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Deployed on Railway.app
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-linear-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src="/next.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={150}
-              height={48}
-              priority
-            />
-          </a>
+    <main>
+      {/* ───── Hero ───── */}
+      <section className="relative overflow-hidden border-b border-border/40">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-20 text-center sm:px-6 sm:py-28 lg:px-8 lg:py-36">
+          <span className="rounded-full bg-secondary px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-secondary-foreground">
+            Curated Reviews · Affiliate Picks
+          </span>
+          <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+            Level Up Your Body,{" "}
+            <span className="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">
+              Mind &amp; Productivity
+            </span>
+          </h1>
+          <p className="max-w-xl text-lg text-muted-foreground">
+            Honest, in-depth reviews of the best European fitness gear, mindset
+            books, and productivity tools — handpicked so you don&apos;t have to
+            scroll through noise.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 pt-2">
+            <Link
+              href="/shop"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            >
+              Browse the Shop
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/shop?category=Fitness"
+              className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold transition-colors hover:bg-secondary"
+            >
+              Fitness Picks
+            </Link>
+          </div>
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] dark:before:bg-linear-to-br dark:before:from-transparent dark:before:to-blue-700 dark:before:opacity-10 dark:after:from-sky-900 dark:after:via-[#0141ff] dark:after:opacity-40 lg:before:h-[360px]">
-        <Image
-          className="relative rounded-full dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/railway-logo-dark.png"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+        {/* Decorative gradient blob */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-40 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-tr from-blue-500/20 via-violet-500/20 to-transparent blur-3xl"
         />
-      </div>
+      </section>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://docs.railway.app/"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Railway Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      {/* ───── Categories ───── */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+          Shop by Category
+        </h2>
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {categories.map((cat) => (
+            <Link
+              key={cat}
+              href={`/shop?category=${encodeURIComponent(cat)}`}
+              className="group flex flex-col gap-3 rounded-2xl border border-border/60 bg-card p-6 transition-all hover:shadow-lg hover:border-border"
+            >
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary text-foreground">
+                {categoryIcons[cat]}
+              </span>
+              <h3 className="text-lg font-semibold">{cat}</h3>
+              <p className="text-sm text-muted-foreground">
+                {categoryDescriptions[cat]}
+              </p>
+              <span className="mt-auto inline-flex items-center gap-1 text-sm font-medium text-primary transition-transform group-hover:translate-x-1">
+                Explore <ArrowRight className="h-4 w-4" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
 
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            NextJS Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      {/* ───── Featured Products ───── */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="flex items-end justify-between">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+              Featured Picks
+            </h2>
+            <p className="mt-1 text-muted-foreground">
+              Our most-reviewed, highest-rated recommendations.
+            </p>
+          </div>
+          <Link
+            href="/shop"
+            className="hidden items-center gap-1 text-sm font-medium text-primary sm:inline-flex"
+          >
+            View all <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {featured.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
 
-        <a
-          href="https://ui.shadcn.com"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-          shadcn/ui
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
+      {/* ───── CTA Banner ───── */}
+      <section className="border-t border-border/40 bg-secondary/50">
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-16 text-center sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            Your journey starts with the right tools
           </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-          Beautifully designed components that you can copy and paste into your apps.
+          <p className="text-muted-foreground">
+            Every product on AffMarket is personally tested and reviewed. We
+            only recommend what we&apos;d use ourselves.
           </p>
-        </a>
-
-        <a
-          href="https://tailwindcss.com/"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            TailwindCSS{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-          Rapidly build modern websites without ever leaving your HTML.
-          </p>
-        </a>
-      </div>
+          <Link
+            href="/shop"
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+          >
+            Start Shopping
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </section>
     </main>
-  )
+  );
 }
