@@ -66,6 +66,7 @@ export default async function ProductPage({ params }: PageProps) {
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
                 priority
+                unoptimized
               />
             </div>
 

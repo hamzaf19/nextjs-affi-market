@@ -8,6 +8,10 @@ const nextConfig = {
         hostname: "placehold.co",
       },
     ],
+    // Enable SVGs from placehold.co and lock down via CSP
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy:
+      "default-src 'self'; script-src 'none'; sandbox;",
   },
 };
 
