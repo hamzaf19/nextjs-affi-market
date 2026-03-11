@@ -58,15 +58,15 @@ export default async function ProductPage({ params }: PageProps) {
         <div className="lg:col-span-2">
           <div className="sticky top-24 flex flex-col gap-6">
             {/* Image */}
-            <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-muted">
+            <div className="relative mx-auto flex h-auto w-full max-w-xs items-center justify-center overflow-hidden rounded-2xl bg-muted bg-white p-8 sm:max-w-sm">
               <Image
                 src={product.image}
                 alt={product.name}
-                fill
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover"
+                width={300}
+                height={280}
+                className="h-auto w-full object-contain"
+                sizes="(max-width: 640px) 70vw, 300px"
                 priority
-                unoptimized
               />
             </div>
 

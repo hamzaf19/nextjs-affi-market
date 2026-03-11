@@ -7,9 +7,9 @@ import { Menu, X, ShoppingBag, BookOpen } from "lucide-react";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/shop", label: "Shop" },
-  { href: "/shop?category=Fitness", label: "Fitness" },
-  { href: "/shop?category=Mindset", label: "Mindset" },
-  { href: "/shop?category=Productivity", label: "Productivity" },
+  { href: "/shop?category=Sleep", label: "Sleep" },
+  { href: "/shop?category=Diets", label: "Diets" },
+  { href: "/shop?category=Wellbeing", label: "Wellbeing" },
 ];
 
 export function Navbar() {
