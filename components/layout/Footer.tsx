@@ -32,7 +32,7 @@ export function Footer() {
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                 <ShoppingBag className="h-4 w-4" />
               </span>
-              <span>AffMarket</span>
+              <span>BioMetrix Reviews</span>
             </Link>
             <p className="mt-3 max-w-md text-sm text-muted-foreground">
               Curated reviews and honest recommendations for fitness gear,
@@ -63,7 +63,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 border-t border-border/40 pt-6 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} AffMarket. All rights reserved. This
+          © {new Date().getFullYear()} BioMetrix Reviews. All rights reserved. This
           site contains affiliate links.
         </div>
       </div>

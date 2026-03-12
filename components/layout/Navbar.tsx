@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, ShoppingBag, BookOpen } from "lucide-react";
+import { Menu, X, Activity, BookOpen } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -21,9 +21,9 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-bold text-lg tracking-tight">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <ShoppingBag className="h-4 w-4" />
+            <Activity className="h-4 w-4" />
           </span>
-          <span>AffMarket</span>
+          <span>BioMetrix Reviews</span>
         </Link>
 
         {/* Desktop links */}

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Star, Tag } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 import { getAllSlugs, getProductBySlug } from "@/lib/products";
 import { AffiliateButton } from "@/components/shop/AffiliateButton";
 
@@ -37,9 +38,6 @@ export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params;
   const product = getProductBySlug(slug);
   if (!product) notFound();
-
-  // Split the longReview into paragraphs for rendering
-  const reviewParagraphs = product.longReview.split("\n\n");
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
@@ -138,30 +136,7 @@ export default async function ProductPage({ params }: PageProps) {
             </h2>
 
             <div className="prose prose-neutral dark:prose-invert max-w-none">
-              {reviewParagraphs.map((para, idx) => {
-                // Handle bold headings within the review (e.g. **Heading:**)
-                if (para.startsWith("**")) {
-                  const parts = para.split("**");
-                  return (
-                    <div key={idx} className="mt-6 first:mt-0">
-                      {parts.map((part, i) =>
-                        i % 2 === 1 ? (
-                          <strong key={i} className="text-foreground">
-                            {part}
-                          </strong>
-                        ) : (
-                          <span key={i}>{part}</span>
-                        )
-                      )}
-                    </div>
-                  );
-                }
-                return (
-                  <p key={idx} className="leading-relaxed text-muted-foreground">
-                    {para}
-                  </p>
-                );
-              })}
+              <ReactMarkdown>{product.longReview}</ReactMarkdown>
             </div>
 
             {/* Bottom CTA */}
